@@ -1,0 +1,21 @@
+@import 'variables';
+@import 'reset';
+
+//基础样式设置
+html, body {
+  line-height: 1;
+  height: 100%;
+  font-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', arial, sans-serif, 'Droid Sans Fallback';
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  background: $color-background;
+}
+
+// rewrite styles of elementUI
+.el-input__inner {
+    border-radius: 50px;
+}
+
+.el-input__inner:hover {
+    border-color: #757575
+}
