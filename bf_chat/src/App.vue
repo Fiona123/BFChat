@@ -6,7 +6,7 @@
                     <text-log v-if="item.type === 'text'" :chat="item"></text-log>
                     <options v-else-if="item.type === 'options'"></options>
                 </div>
-                <img src="/static/gif.gif">
+                <img src="/BFChat/static/gif.gif">
                 <el-button type="danger" plain @click="clickBtn">危险按钮</el-button>
                 <div class="end-div" ref="end"></div>
             </Scroll>
@@ -52,6 +52,9 @@ export default {
             } else {
                 this.placeholder = 'Say something...'
             }
+        },
+        clickBtn () {
+
         },
         sendChat () {
             let showAvatar = false
