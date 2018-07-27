@@ -4,7 +4,8 @@ export default {
     sendChatRequest (text, arg) {
         axios({
             method: 'post',
-            baseURL: '/api/openapi/chat',
+            // baseURL: '/api/openapi/chat',
+            baseURL: 'http://shadow.emotibot.com/openapi/chat',
             headers: { 'content-type': 'text/html; charset=UTF-8' },
             data: {
                 appId: '24fff63d783f698e8d3f7bf659453b2f',
