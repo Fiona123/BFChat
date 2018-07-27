@@ -4,8 +4,10 @@
             <Scroll class="scroll-container" :data="chatList" ref="scroll">
                 <div class="chat-log" v-for="(item, index) in chatList" :key="index">
                     <text-log v-if="item.type === 'text'" :chat="item"></text-log>
+                    <options v-else-if="item.type === 'options'"></options>
                 </div>
-                <Options></Options>
+                <img src="/static/gif.gif">
+                <el-button type="danger" plain @click="clickBtn">危险按钮</el-button>
                 <div class="end-div" ref="end"></div>
             </Scroll>
         </div>
@@ -33,7 +35,8 @@ export default {
         return {
             chatList: [
                 {type: 'text', owner: 'robot', content: 'Hi', showAvatar: true},
-                {type: 'text', owner: 'robot', content: 'What can I do for you?', showAvatar: false}
+                {type: 'text', owner: 'robot', content: 'What can I do for you?', showAvatar: false},
+                {type: 'options', owner: 'robot', content: []}
             ],
             isVoiceType: false,
             inputQuestion: '',
@@ -57,6 +60,12 @@ export default {
                 showAvatar = true
             }
             this.chatList.push({type: 'text', owner: 'user', content: this.inputQuestion, showAvatar: showAvatar})
+
+            if (this.inputQuestion.indexOf('can you do') !== -1) {
+                this.inputQuestion = ''
+                this.chatList.push({type: 'options', owner: 'robot', content: []})
+                return
+            }
             https.sendChatRequest(this.inputQuestion, {
                 success: function (data) {
                     let num = that.chatList.length
@@ -100,6 +109,8 @@ export default {
             left: 0;
             right: 0;
             bottom: 0;
+            width: 100%;
+            overflow: hidden;
             .end-div{
                 height: 20px;
                 width: 100%;

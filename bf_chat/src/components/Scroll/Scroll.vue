@@ -1,6 +1,9 @@
 <template>
-    <div class="scroll-wrapper" ref="scrollWrapper">
-        <div class="content-wrapper" ref="contentWrapper">
+    <div ref="wrapper" v-if="direction==='horizontal'">
+        <slot></slot>
+    </div>
+    <div ref="wrapper" v-else>
+        <div ref="contentWrapper">
             <slot></slot>
         </div>
     </div>
@@ -20,26 +23,35 @@ export default {
         },
         click: {
             type: Boolean,
-            default: true
+            default: false
+        },
+        listenScroll: {
+            type: Boolean,
+            default: false
+        },
+        data: {
+            type: Array,
+            default: null
+        },
+        pullup: {
+            type: Boolean,
+            default: false
+        },
+        beforeScroll: {
+            type: Boolean,
+            default: false
+        },
+        refreshDelay: {
+            type: Number,
+            default: 20
         },
         direction: {
             type: String,
             default: DIRECTION_V
         },
-        data: {
-            type: Array || Object,
-            default: null
-        },
-        listenScroll: {
+        mouseWheel: {
             type: Boolean,
-            default: false
-        }
-    },
-    watch: {
-        data () {
-            setTimeout(() => {
-                this.refresh()
-            }, 20)
+            default: true
         }
     },
     mounted () {
@@ -49,45 +61,73 @@ export default {
     },
     methods: {
         _initScroll () {
-            this.scroll = new BScroll(this.$refs.scrollWrapper, {
+            if (!this.$refs.wrapper) {
+                return
+            }
+            this.scroll = new BScroll(this.$refs.wrapper, {
                 probeType: this.probeType,
                 click: this.click,
-                eventPassthrough: this.direction === DIRECTION_V ? DIRECTION_H : DIRECTION_V
+                // eventPassthrough: this.direction === DIRECTION_V ? DIRECTION_H : DIRECTION_V
+                scrollY: this.direction === DIRECTION_V,
+                scrollX: this.direction === DIRECTION_H,
+                mouseWheel: this.mouseWheel
             })
+
             if (this.listenScroll) {
-                let me = this
                 this.scroll.on('scroll', (pos) => {
-                    me.$emit('scroll', pos)
+                    this.$emit('scroll', pos)
                 })
             }
+
+            if (this.pullup) {
+                this.scroll.on('scrollEnd', () => {
+                    if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
+                        this.$emit('scrollToEnd')
+                    }
+                })
+            }
+
+            if (this.beforeScroll) {
+                this.scroll.on('beforeScrollStart', () => {
+                    this.$emit('beforeScroll')
+                })
+            }
+        },
+        disable () {
+            this.scroll && this.scroll.disable()
+        },
+        enable () {
+            this.scroll && this.scroll.enable()
         },
         refresh () {
             this.scroll && this.scroll.refresh()
         },
         scrollTo () {
-            this.scroll && this.scroll.scrollTo(arguments)
+            this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
         },
         scrollToElement () {
-            console.log('scroll heigth = ' + this.$refs.contentWrapper.clientHeight)
-            this.scroll && this.scroll.scrollToElement(arguments)
+            this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
         },
         scrollToEnd () {
             const that = this
             this.$nextTick(function () {
-                const clientY = that.$refs.contentWrapper.clientHeight - that.$refs.scrollWrapper.clientHeight
+                const clientY = that.$refs.contentWrapper.clientHeight - that.$refs.wrapper.clientHeight
                 if (clientY < 0) {
                     return
                 }
                 that.scroll && that.scroll.scrollTo(0, -clientY)
             })
         }
+    },
+    watch: {
+        data () {
+            setTimeout(() => {
+                this.refresh()
+            }, this.refreshDelay)
+        }
     }
 }
 </script>
 
-<style lang='scss' scoped>
-.scroll-wrapper{
-    height: 100%;
-    overflow: hidden;
-}
+<style>
 </style>

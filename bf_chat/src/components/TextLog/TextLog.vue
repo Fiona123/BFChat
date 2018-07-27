@@ -2,7 +2,7 @@
     <div class="container">
         <div v-if="chat.owner==='robot'" class="robot">
             <div class="avatar-container">
-                <img v-show="chat.showAvatar" class="avatar" src="./logo.jpg"/>
+                <img v-show="chat.showAvatar" class="avatar" src="/static/logo.jpg"/>
             </div>
             <div class="text">{{chat.content}}</div>
         </div>
@@ -10,7 +10,7 @@
             <div class="blank"></div>
             <div class="text">{{chat.content}}</div>
             <div class="avatar-container">
-                <img v-show="chat.showAvatar" class="avatar" src="./logo.png"/>
+                <img v-show="chat.showAvatar" class="avatar" src="/static/logo.png"/>
             </div>
         </div>
     </div>
@@ -28,7 +28,6 @@ export default {
     },
     data () {
         return {
-
         }
     }
 }
