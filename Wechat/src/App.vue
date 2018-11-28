@@ -178,6 +178,9 @@ export default {
         sendInputQuestion () {
             this._sendChat(this.inputQuestion)
             this.inputQuestion = ''
+            setTimeout(function () {
+                document.body.scrollTop = 0
+            }, 300)
         },
         onInputFocus () {
             // 解决手机端置底input被键盘挡住的问题
