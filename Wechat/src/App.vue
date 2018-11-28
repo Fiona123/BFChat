@@ -44,7 +44,7 @@
                     <div class="input-box-wrapper">
                         <div class="voice" @click="switchInputType"></div>
                         <el-input ref="questionInput" class="input-box" placeholder="请输入聊天信息" v-model="inputQuestion" @focus="onInputFocus" type="text" maxlength="50">
-                            <div slot="suffix" class="send-icon-wrapper" @click="sendInputQuestion">
+                            <div slot="suffix" class="send-icon-wrapper" @click="sendInputQuestion" @blur="onInputBlur">
                                 <i  :class="{'icon-send': true,'icon-send-blue': inputQuestion!=='','icon-send-none':inputQuestion===''}"></i>
                             </div>
                         </el-input>
@@ -178,6 +178,10 @@ export default {
         sendInputQuestion () {
             this._sendChat(this.inputQuestion)
             this.inputQuestion = ''
+            this.onInputBlur()
+        },
+        onInputBlur () {
+            // 兼容性，iphone某版本手机，键盘收起时，页面没有滑到原本位置
             setTimeout(function () {
                 document.body.scrollTop = 0
             }, 300)
