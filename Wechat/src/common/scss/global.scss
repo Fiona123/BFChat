@@ -1,0 +1,40 @@
+@import 'variables';
+@import 'reset';
+
+//基础样式设置
+html, body {
+  line-height: 1;
+  height: 100%;
+  font-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', arial, sans-serif, 'Droid Sans Fallback';
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  background: $color-background;
+}
+
+// rewrite styles of elementUI
+.el-input__inner {
+    border-radius: 50px;
+}
+
+.el-input__inner:hover {
+    border-color: #E9E9E9
+}
+
+.el-textarea__inner {
+    background: transparent;
+    border: 0;
+    resize: none;
+}
+.left-bubble {
+    background: #FFFFFF;
+    box-shadow: 0 5px 10px 0 #E9E9E9;
+    border-radius: 25px 25px 25px 5px;
+    color: #666666;
+}
+
+.right-bubble {
+    background: #3389EE;
+    box-shadow: 0 5px 10px 0 #E9E9E9;
+    border-radius: 25px 25px 5px 25px;
+    color: #FFFFFF;
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>v2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="14" height="14"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="03-chat2_1" transform="translate(-350.000000, -344.000000)">
+            <g id="Group-8" transform="translate(190.000000, 329.000000)">
+                <g id="v2" transform="translate(169.899495, 25.000000) rotate(-135.000000) translate(-169.899495, -25.000000) translate(162.899495, 18.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Mask" fill="#3389EE" xlink:href="#path-1"></use>
+                    <g id="Group-4" mask="url(#mask-2)" stroke="#FFFFFF" stroke-width="2.5">
+                        <g transform="translate(-9.000000, 5.000000)" id="Oval-5">
+                            <circle fill="none" cx="9" cy="9" r="7.15"></circle>
+                            <circle fill="#3389EE" fill-rule="evenodd" cx="9" cy="9" r="1.55"></circle>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
