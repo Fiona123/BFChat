@@ -182,9 +182,7 @@ export default {
         },
         onInputBlur () {
             // 兼容性，iphone某版本手机，键盘收起时，页面没有滑到原本位置
-            setTimeout(function () {
-                document.body.scrollTop = 0
-            }, 300)
+            document.body.scrollTop = 0
         },
         onInputFocus () {
             // 解决手机端置底input被键盘挡住的问题
