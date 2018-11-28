@@ -43,8 +43,8 @@
                 <div class="input-wrapper" v-show='!isVoiceType'>
                     <div class="input-box-wrapper">
                         <div class="voice" @click="switchInputType"></div>
-                        <el-input ref="questionInput" class="input-box" placeholder="请输入聊天信息" v-model="inputQuestion" @focus="onInputFocus" type="text" maxlength="50">
-                            <div slot="suffix" class="send-icon-wrapper" @click="sendInputQuestion" @blur="onInputBlur">
+                        <el-input ref="questionInput" class="input-box" placeholder="请输入聊天信息" v-model="inputQuestion" @blur="onInputBlur" @focus="onInputFocus" type="text" maxlength="50">
+                            <div slot="suffix" class="send-icon-wrapper" @click="sendInputQuestion">
                                 <i  :class="{'icon-send': true,'icon-send-blue': inputQuestion!=='','icon-send-none':inputQuestion===''}"></i>
                             </div>
                         </el-input>
